@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang='en'>
+<head>
+<meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>SentinelAI+ Dashboard</title>
+<link rel='stylesheet' href='/static/style.css'>
+</head>
+<body>
+<div class='container'>
+  <h1>SentinelAI+ Dashboard</h1>
+  <div class='card'><button id='analyzeBtn'>Analyze Logs</button></div>
+  <div class='card'><h2>Overview</h2>
+    <p><b>Total logs:</b> <span id='total_logs'>-</span></p>
+    <p><b>Alert count:</b> <span id='alert_count'>-</span></p></div>
+  <div class='card'><h2>Detection</h2><p id='detection'>-</p></div>
+  <div class='card'><h2>AI Summary</h2><p id='summary'>-</p></div>
+  <footer>SentinelAI+ • Local LLM privacy-friendly</footer>
+</div>
+<script>
+document.getElementById('analyzeBtn').addEventListener('click',async()=>{
+ const btn=this;btn.disabled=true;btn.textContent='Analyzing...';
+ try{
+   const res=await fetch('/analyze');
+   const data=await res.json();
+   summary.innerText=data.summary;
+   detection.innerText=data.detection;
+   total_logs.innerText=data.total_logs;
+   alert_count.innerText=data.alert_count;
+ }catch(e){summary.innerText='Error: '+e;}
+ finally{btn.disabled=false;btn.textContent='Analyze Logs';}
+});
+</script>
+</body></html>

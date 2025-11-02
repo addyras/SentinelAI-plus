@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Logs and data
+*.log
+*.csv
+*.sqlite
+.DS_Store
+
+# OS
+Thumbs.db
+desktop.ini
+
+# Local AI model or cache directories
+.ollama/
+.cache/
